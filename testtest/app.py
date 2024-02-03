@@ -65,22 +65,23 @@ def test_start(message: telebot.types.Message):
 def test(message: telebot.types.Message):
     try:
         us = u.getUser(message.chat.id)
-        text, win = Test.test_block(us, message)
-        bot.send_message(message.chat.id, text)
-        if win != None:
-            with open(win.img,'rb') as img:
-                bot.send_photo(message.chat.id, img)
-                bot.send_message(message.chat.id, win.descr)
-            with open('users.txt', 'w', encoding='utf8') as f:
-                f.write(f'{us.name} тотемное животное {win.name}\n')
-            info(message)
-            win = None
-        print('пашет')
-
     except ValueError or IndexError as ex:
         with open('log.txt', 'w') as f:
             f.write(str(ex))
         strt(message)
+    text, win = Test.test_block(us, message)
+    bot.send_message(message.chat.id, text)
+    if win != None:
+        with open(win.img,'rb') as img:
+            bot.send_photo(message.chat.id, img)
+            bot.send_message(message.chat.id, win.descr)
+        with open('users.txt', 'w', encoding='utf8') as f:
+            f.write(f'{us.name} тотемное животное {win.name}\n')
+        info(message)
+        win = None
+        print('пашет')
+
+
 
 
 bot.polling()

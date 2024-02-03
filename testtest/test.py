@@ -11,7 +11,11 @@ class Test:
                 text = "Неверный ввод."
                 with open('log.txt', 'w') as f:
                     f.write(str(ex))
-                return text
+                return text, win
+            else:
+                if ans < 1 or ans > len(b.obj_list):
+                    text = 'Такой вариант отсутствует'
+                    return text, win
             b.obj_list[ans - 1].score += 1
         if us.q_count > 5:
             us.intest = False
