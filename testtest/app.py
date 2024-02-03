@@ -79,7 +79,7 @@ def test(message: telebot.types.Message):
             f.write(f'{us.name} тотемное животное {win.name}\n')
         info(message)
         win = None
-        print('пашет')
+        
 
 
 
